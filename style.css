@@ -1,0 +1,52 @@
+#flex {
+	display: flex;
+	align-content: space-around;
+}
+
+#table {
+	margin: 0 auto;
+	position: relative;
+	top: 200px;
+	height: auto;
+	width: auto;
+	text-align: center;
+	vertical-align: middle;
+	
+}
+button {
+	margin: 0 auto;
+	display: block;
+	position: relative;
+	top: 300px;
+}
+
+#card {
+	border: 1px solid black;
+	border-radius: 10px;
+	height: 300px;
+	width: 200px;
+	position: relative;
+}
+
+#id {
+	position: absolute;
+	font-size: 2em;
+	right: 15px;
+	top: 10px;
+	
+}
+
+#icon {
+	position: absolute;
+	left: 60px;
+	top: 110px;
+	height: 80px;
+	width: 80px;
+}
+
+#id2 {
+	position: absolute;
+	font-size: 2em;
+	left: 15px;
+	bottom: 10px;
+}
