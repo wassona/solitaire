@@ -6,13 +6,28 @@
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
-	<div id="flex">
-		<div id="table">
-			
-		</div>
+	<section id="table">
+		<div id="grid">
+			<div class="el" id="draw"></div>
+			<div class="el" id="waste"></div>
+			<section id="fill"></section>
+			<div class="el" id="found1" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="found2" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="found3" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="found4" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="one" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="two" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="three" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="four" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="five" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="six" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<div class="el" id="seven" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
+			<section id="footer"></section>
+		</section>
 	</div>
-	<button id="deal" onclick="deal()">Deal!</button>
+	<button id="deal" onclick="deal('waste')">Deal!</button>
 	<button id="shuffle" onclick="shuffle()">Shuffle!</button>
+	<button id="play" onclick="play()">Play!</button>
 	<div id="info"></div>
 </body>
 </html>

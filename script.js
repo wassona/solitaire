@@ -54,7 +54,7 @@ var obj = {
 }
 
 var dealt = [];
-function deal(){
+function deal(target){
 	var check = true;
 	while (check) {
 		var card = (Math.floor(Math.random()*52));
@@ -127,11 +127,27 @@ function deal(){
 					color = "red";
 					break;
 				}
-			 
-			document.getElementById('table').innerHTML = "<div id='card'> <div id='id' style='color:" + color +"'>" + value + "</div> <img src=" + suit + " id='icon'></div> <div id='id2' style='color:" + color +"'>" + value + "</div></div>";
+			
+
+			 var depth = document.getElementById(target).childElementCount;
+			
+			 if (target == 'waste') {
+			 	var position = "absolute";
+			 	var bottom = 0;
+			 } else {
+			 	var position = "relative";
+			 	var bottom = 90*depth;
+			 }
+
+			document.getElementById(target).insertAdjacentHTML ('beforeend', "<div id='" + card + "' class='card' style='position:" + position + "; bottom:" + bottom +"%;' draggable='true' ondragstart='dragstart_handler(event);'> <div id='id' style='color:" + color +"'>" + value + "</div> <img src=" + suit + " id='icon' draggable='false'> <div id='id2' style='color:" + color +"'>" + value + "</div> <div id='back' onclick='flip(this);'></div> </div>");
 			check = false;
 			dealt.push(card);
 			console.log(dealt); 
+			
+			
+			console.log(depth);
+			console.log(target);
+			console.log(card);
 		}
 		else if (dealt.length == 52) {
 			check=false;
@@ -141,4 +157,64 @@ function deal(){
 
 function shuffle(){
 	dealt = [];
+}
+
+
+
+
+function dragstart_handler(ev) {
+	console.log("dragStart");
+	// Add the target element's id to the data transfer object
+	ev.dataTransfer.setData("text/plain", ev.target.id);
+}
+
+function dragover_handler(ev) {
+	ev.preventDefault();
+	// Set the dropEffect to move
+	ev.dataTransfer.dropEffect = "move"
+}
+
+function drop_handler(ev) {
+	 ev.preventDefault();
+	 // Get the id of the target and add the moved element to the target's DOM
+	 var data = ev.dataTransfer.getData("text");
+
+
+	var dropzone = ev.target;
+	while (dropzone.className != "el") {
+	    dropzone = dropzone.parentNode;
+	}
+
+	var depth = dropzone.childElementCount;
+	document.getElementById(data).style.position="relative";
+	document.getElementById(data).style.bottom=90*depth + "%";
+	console.log(document.getElementById(data));	
+	console.log(data);
+	console.log(depth);
+	dropzone.appendChild(document.getElementById(data));
+}
+
+function play() {
+	shuffle();
+
+	var count = { 1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven"}
+
+	for (i = 1; i < 8; i++) {
+		console.log(count[i]);
+		var j = 1;
+		while (j <= i) {
+			deal(count[i]);
+			if (j == i) {
+				document.getElementById(count[i]).lastElementChild.lastElementChild.style.display = "none";
+			}
+			j++;
+		}
+		
+	}
+	
+}
+
+function flip(self) {
+	console.log(self);
+	self.style.display="none";
 }

@@ -1,52 +1,93 @@
-#flex {
-	display: flex;
-	align-content: space-around;
+#table {
+	background-color: green;
+	width: 100%;
+	height: 50vw;
 }
 
-#table {
-	margin: 0 auto;
+#grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+	grid-template-rows: auto;
+	grid-template-areas:	"draw waste fill found1 found2 found3 found4"
+							"footer footer footer footer footer footer footer"
+							"one two three four five six seven";
+							
+	background-color: green;
 	position: relative;
-	top: 200px;
-	height: auto;
-	width: auto;
-	text-align: center;
-	vertical-align: middle;
+	top: 2%;
+	margin: 0 auto;
+	height: 95%;
+	width: 95%;
+	grid-gap: 1em;
+}
+
+#footer {
+	grid-area: footer;
+}
+
+.el {
+	position: relative;
+	border: 1px dashed black;
+	border-radius: 10px;
+	
+}
+
+#waste {
+	
 	
 }
 button {
 	margin: 0 auto;
 	display: block;
 	position: relative;
-	top: 300px;
+	
 }
 
-#card {
-	border: 1px solid black;
+.card {
+	border: 2px solid black;
 	border-radius: 10px;
-	height: 300px;
-	width: 200px;
+	height: 100%;
+	width: 100%;
+	background-color: ivory;
+}
+
+.card + .card {
+	
+}
+
+
+#back {
+	background-image: url("back.jpg");
+	background-position: center;
+	width: 97%;
+	height: 97%;
 	position: relative;
+	top: 1.5%;
+	left: 1.5%;
+	border-radius: 10px;
+	
 }
 
 #id {
 	position: absolute;
-	font-size: 2em;
-	right: 15px;
-	top: 10px;
+	font-size: 1em;
+	right: .5em;
+	top: .5em;
 	
 }
 
 #icon {
 	position: absolute;
-	left: 60px;
-	top: 110px;
-	height: 80px;
-	width: 80px;
+	margin: 0 auto;
+	top: 40%;
+	left: 35%;
+	height: 20%;
+	width: auto;
 }
 
 #id2 {
 	position: absolute;
-	font-size: 2em;
-	left: 15px;
-	bottom: 10px;
+	font-size: 1em;
+	left: .5em;
+	bottom: .5em;
 }
