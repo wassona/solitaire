@@ -6,9 +6,13 @@
 	<script type="text/javascript" src="script.js"></script>
 </head>
 <body>
+
+	<a href="beleaguered_castle/index.html">Fuck this noise. Click here.</a>
+	<button id="play" onclick="play()">Start!</button>
 	<section id="table">
+		<button id="shuffle" onclick="shuffle()">Shuffle!</button>
 		<div id="grid">
-			<div class="el" id="draw"></div>
+			<div class="el" id="draw" onclick="deal('waste')"><div class="back"></div></div>
 			<div class="el" id="waste"></div>
 			<section id="fill"></section>
 			<div class="el" id="found1" ondrop="drop_handler(event);" ondragover="dragover_handler(event);"></div>
@@ -25,9 +29,6 @@
 			<section id="footer"></section>
 		</section>
 	</div>
-	<button id="deal" onclick="deal('waste')">Deal!</button>
-	<button id="shuffle" onclick="shuffle()">Shuffle!</button>
-	<button id="play" onclick="play()">Play!</button>
 	<div id="info"></div>
 </body>
 </html>

@@ -134,12 +134,14 @@ function deal(target){
 			 if (target == 'waste') {
 			 	var position = "absolute";
 			 	var bottom = 0;
+			 	var style = "style='display: none;'"
 			 } else {
 			 	var position = "relative";
 			 	var bottom = 90*depth;
+			 	var style = ""
 			 }
 
-			document.getElementById(target).insertAdjacentHTML ('beforeend', "<div id='" + card + "' class='card' style='position:" + position + "; bottom:" + bottom +"%;' draggable='true' ondragstart='dragstart_handler(event);'> <div id='id' style='color:" + color +"'>" + value + "</div> <img src=" + suit + " id='icon' draggable='false'> <div id='id2' style='color:" + color +"'>" + value + "</div> <div id='back' onclick='flip(this);'></div> </div>");
+			document.getElementById(target).insertAdjacentHTML ('beforeend', "<div id='" + card + "' class='card' style='position:" + position + "; bottom:" + bottom +"%;' draggable='true' ondragstart='dragstart_handler(event);'> <div class='id' style='color:" + color +"'>" + value + "</div> <img src=" + suit + " class='icon' draggable='false'> <div class='id2' style='color:" + color +"'>" + value + "</div> <div class='back' "+ style +" onclick='flip(this);'></div> </div>");
 			check = false;
 			dealt.push(card);
 			console.log(dealt); 
@@ -151,12 +153,62 @@ function deal(target){
 		}
 		else if (dealt.length == 52) {
 			check=false;
+			document.getElementById("draw").style.cssText = "background-color: transparent; border-style: dashed;";
+			document.getElementById("draw").innerHTML = "";
 		}
 	}
 }
 
+
+function arr_diff (a1, a2) {
+
+    var a = [], diff = [];
+
+    for (var i = 0; i < a1.length; i++) {
+        a[a1[i]] = true;
+    }
+
+    for (var i = 0; i < a2.length; i++) {
+        if (a[a2[i]]) {
+            delete a[a2[i]];
+        } else {
+            a[a2[i]] = true;
+        }
+    }
+
+    for (var k in a) {
+        diff.push(k);
+    }
+
+    return diff;
+};
+
+
 function shuffle(){
-	dealt = [];
+	var waste = document.getElementById("waste");
+	var redeal = [];
+	for (var i = waste.childNodes.length - 1; i >= 0; i--) {
+		redeal.push(waste.childNodes[i].id);
+	}
+	console.log(redeal);
+	console.log(waste);
+	
+
+
+	dealt= arr_diff(dealt,redeal);
+	
+	for (var i = dealt.length - 1; i >= 0; i--) {
+		dealt[i]= parseInt(dealt[i], 10)
+	}
+
+	document.getElementById('waste').innerHTML = "";
+
+	console.log(dealt);
+
+	document.getElementById("draw").style.cssText = "background-color: ivory; border-style: solid;";
+	document.getElementById("draw").innerHTML = "<div class='back'></div>";
+
+
 }
 
 
@@ -164,8 +216,31 @@ function shuffle(){
 
 function dragstart_handler(ev) {
 	console.log("dragStart");
+	console.log(ev);
+	console.log(ev.target);
+	console.log(ev.target.id)
+	console.log(ev.target.nextSibling);
+	var targets = [];
+	var check = true;
+	var tar = ev.target;
+	var count = 0;
+	while (check) {
+		if (tar.nextSibling === null) {
+			check = false;
+		} else {
+			targets.push(tar.id);
+			tar = tar.nextSibling;
+			count++;
+		}
+	}
+	console.log(targets);
+	console.log("count =" + count);
 	// Add the target element's id to the data transfer object
+	
 	ev.dataTransfer.setData("text/plain", ev.target.id);
+	
+	
+	console.log(ev.dataTransfer);
 }
 
 function dragover_handler(ev) {
@@ -188,6 +263,7 @@ function drop_handler(ev) {
 	var depth = dropzone.childElementCount;
 	document.getElementById(data).style.position="relative";
 	document.getElementById(data).style.bottom=90*depth + "%";
+	console.log("dropStart");
 	console.log(document.getElementById(data));	
 	console.log(data);
 	console.log(depth);
