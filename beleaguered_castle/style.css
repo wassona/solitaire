@@ -35,12 +35,21 @@
 	width: 148px;
 }
 
+#start, #rules {
+	position: relative;
+	left: 45%;
+}
+
 .card {
 	height: 100%;
 	width: 100%;
 	border: 1px solid black;
 	background-color: ivory;
 	border-radius: 10px;
+}
+
+.card:hover {
+	z-index: 1;
 }
 
 .id {
@@ -65,4 +74,47 @@
 	font-size: 1em;
 	right: .5em;
 	bottom: .5em;
+}
+
+#mask {
+	display: none;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 100%;
+	width: 100%;
+	background-color: rgba(220,220,220,.8);
+	z-index: 1;
+}
+
+#modal {
+	position: relative;
+	height: 80%;
+	width: 60%;
+	top: 6%;
+	left: 20%;
+	background-color: rgba(37,37,123,.5);
+	text-align: center;
+	border: 2px solid purple;
+}
+
+#modal img {
+	height: 20%;
+	width: auto;
+}
+
+#modal img:hover{
+	position: absolute;
+	bottom: 15vw;
+	right: 14vw;
+	height: auto;
+	width: auto;
+}
+
+h2 {
+	margin: .25em;
+}
+
+p {
+	margin: .25em;
 }

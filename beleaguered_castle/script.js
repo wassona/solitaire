@@ -161,10 +161,15 @@ function drop_handler(ev) {
 	ev.preventDefault();
 	var data = ev.dataTransfer.getData("text");
 
+	if (ev.target.className === "foundation" || ev.target.className === "tableau") {
+		ev.target.appendChild(document.getElementById(data));
+		document.getElementById(data).style.left = "0px";
+	}
+
 	// Ensure that dropped element becomes child of target, not child of another card
 
 	var dropzone = ev.target;
-	//console.log((dropzone.className !== 'foundation'));
+	
 	
 	while (dropzone.className !== "foundation" && dropzone.className !== "tableau") {
 	    dropzone = dropzone.parentNode;
@@ -241,3 +246,19 @@ function drop_handler(ev) {
 
 
 }
+
+// Modal code
+
+function show() {
+	console.log("show");
+	document.getElementById("mask").style.display = "block";
+}
+
+function hide() {
+	console.log("close");
+	document.getElementById("mask").style.display = "none";
+}
+
+var modalTimer = window.setTimeout(show,3000);
+
+console.log("js loaded")
